@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block titulo_pagina %}Listado de Tipos de Usuario{% endblock %}
+{% block body %}
+    <table class="table table-hover">
+        <thead class="table-light">
+            <tr>
+                <th>Nombre</th>
+                <th>MODIFICAR</th>
+                <th>ELIMINAR</th>
+            </tr>
+        </thead>
+    {% for tipo_usuario in tipos_usuario %}
+        <tr>
+            <td>{{tipo_usuario.nombre}}</td>
+            <td><a href="{% url 'modificar_tipo_usuario' tipo_usuario.nombre %}"><img src="{% static 'img/Editar_25.png' %}"></a></td>
+            <td><a href="{% url 'eliminar_tipo_usuario' tipo_usuario.nombre %}"><img src="{% static 'img/Eliminar_25.png' %}"></a></td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block titulo_pagina %}Funcionalidades Administrador{% endblock %}
+{% block body %}
+    <h3>Requerimiento 1: Materia {{curso}} </h3>
+    <table class="table table-hover">
+        <thead class="table-light">
+            <tr>
+                <th>Id Profesor</th>
+                <th>Nombre Prof</th>
+                <th>Apellido Prof</th>
+                <th>Legajo Al</th>
+                <th>Nombre Al</th>
+                <th>Apellido Al</th>
+                <th>Nota 1</th>
+                <th>Nota 2</th>
+                <th>Nota 3</th>
+            </tr>
+        </thead>
+    {% for x in f1 %}
+        <tr>
+            <td>{{x.idProf}}</td>
+            <td>{{x.nomProf}}</td>
+            <td>{{x.apellProf}}</td>
+            <td>{{x.nroReg}}</td>
+            <td>{{x.nomAl}}</td>
+            <td>{{x.apellAl}}</td>
+            <td>{{x.nota_1}}</td>
+            <td>{{x.nota_2}}</td>
+            <td>{{x.nota_3}}</td>
+        </tr>
+    {% endfor %}
+    </table>
+
+    <br><br><br>
+    <h3>Requerimiento 2: Materias y Aulas de todos los Profesores</h3>
+    <table class="table table-hover">
+        <thead class="table-light">
+            <tr>
+                <th>Id Profesor</th>
+                <th>Nombre Prof</th>
+                <th>Apellido Prof</th>
+                <th>Nombre Materia</th>
+                <th>Año</th>
+                <th>Division</th>
+                <th>Id Turno</th>
+                <th>Dia de Clase</th>
+                <th>Hora Ingreso</th>
+                <th>Hora Egreso</th>
+            </tr>
+        </thead>
+    {% for x in f2 %}
+        <tr>
+            <td>{{x.idProf}}</td>
+            <td>{{x.nomProf}}</td>
+            <td>{{x.apellProf}}</td>
+            <td>{{x.nomMat}}</td>
+            <td>{{x.añoAula}}</td>
+            <td>{{x.div}}</td>
+            <td>{{x.idTurno}}</td>
+            <td>{{x.diaClase}}</td>
+            <td>{{x.horaIng}}</td>
+            <td>{{x.horaEgr}}</td>
+        </tr>
+    {% endfor %}
+    </table>
+
+    <br><br><br>
+    <h3>Requerimiento 3: Informacion sobre el aula {{aula}}</h3>
+    <table class="table table-hover">
+        <thead class="table-light">
+            <tr>
+                <th>Id Aula</th>
+                <th>Año</th>
+                <th>Division</th>
+                <th>Id Preceptor</th>
+                <th>Nombre Preceptor</th>
+                <th>Apell Preceptor</th>
+                <th>Legajo Alumno</th>
+                <th>Nombre Alumno</th>
+                <th>Apellido Alumno</th>
+                <th>Nombre Turno</th>
+                <th>Hora Ingreso</th>
+                <th>Hora Egreso</th>
+            </tr>
+        </thead>
+    {% for x in f3 %}
+        <tr>
+            <td>{{x.idAula}}</td>
+            <td>{{x.añoAula}}</td>
+            <td>{{x.div}}</td>
+            <td>{{x.idPrec}}</td>
+            <td>{{x.nomPrec}}</td>
+            <td>{{x.apellPrec}}</td>
+            <td>{{x.nroReg}}</td>
+            <td>{{x.nomAl}}</td>
+            <td>{{x.apellAl}}</td>
+            <td>{{x.nomTurno}}</td>
+            <td>{{x.horaIng}}</td>
+            <td>{{x.horaEgr}}</td>
+        </tr>
+    {% endfor %}
+    </table>
+
+    <br><br><br>
+    <h3>Requerimiento 4: Info del aula {{curso}} con alumnos que tienen > 2 inasist</h3>
+    <table class="table table-hover">
+        <thead class="table-light">
+            <tr>
+                <th>Año</th>
+                <th>Division</th>
+                <th>Nombre Materia</th>
+                <th>Legajo Alumno</th>
+                <th>Nombre Alumno</th>
+                <th>Apellido Alumno</th>
+                <th>Inasistencias</th>
+            </tr>
+        </thead>
+    {% for x in f4 %}
+        <tr>
+            <td>{{x.aulaAño}}</td>
+            <td>{{x.div}}</td>
+            <td>{{x.nomMat}}</td>
+            <td>{{x.nroReg}}</td>
+            <td>{{x.nomAl}}</td>
+            <td>{{x.apellAl}}</td>
+            <td>{{x.cantInasist}}</td>
+        </tr>
+    {% endfor %}
+    </table>
+
+    <br><br><br>
+    <h3>Requerimiento 5: Informacion sobre el turno {{turno}}</h3>
+    <table class="table table-hover">
+        <thead class="table-light">
+            <tr>
+                <th>Id Aula</th>
+                <th>Año</th>
+                <th>Division</th>
+                <th>Nombre Materia</th>
+                <th>Id Profesor</th>
+                <th>Nombre Profesor</th>
+                <th>Apellido Profesor</th>
+                <th>Id Preceptor</th>
+                <th>Nombre Preceptor</th>
+                <th>Apellido Preceptor</th>
+                <th>Legajo Alumno</th>
+                <th>Nombre Alumno</th>
+                <th>Apellido Alumno</th>
+                <th>Hora Ingreso</th>
+                <th>Hora Egreso</th>
+            </tr>
+        </thead>
+    {% for x in f5 %}
+        <tr>
+            <td>{{x.idAula}}</td>
+            <td>{{x.año}}</td>
+            <td>{{x.div}}</td>
+            <td>{{x.nomMat}}</td>
+            <td>{{x.idProf}}</td>
+            <td>{{x.nomProf}}</td>
+            <td>{{x.apellProf}}</td>
+            <td>{{x.idPrec}}</td>
+            <td>{{x.nomPrec}}</td>
+            <td>{{x.apellPrec}}</td>
+            <td>{{x.nroReg}}</td>
+            <td>{{x.nomAl}}</td>
+            <td>{{x.apellAl}}</td>
+            <td>{{x.horaIng}}</td>
+            <td>{{x.horaEgr}}</td>
+        </tr>
+    {% endfor %}
+    </table>
+
+{% endblock %}

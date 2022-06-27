@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block titulo_pagina %}Listado de Géneros{% endblock %}
+{% block body %}
+    <table class="table table-hover">
+        <thead class="table-light">
+            <tr>
+                <th>Nombre</th>
+                <th>MODIFICAR</th>
+                <th>ELIMINAR</th>
+            </tr>
+        </thead>
+    {% for genero in generos %}
+        <tr>
+            <td>{{genero.nombre}}</td>
+            <td><a href="{% url 'modificar_genero' genero.nombre %}"><img src="{% static 'img/Editar_25.png' %}"></a></td>
+            <td><a href="{% url 'eliminar_genero' genero.nombre %}"><img src="{% static 'img/Eliminar_25.png' %}"></a></td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}

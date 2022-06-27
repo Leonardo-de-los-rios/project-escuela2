@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block titulo_pagina %}Administración de Cursos{% endblock %}
+{% block body %}
+    <form class="form" method="post" enctype="multipart/form-data" novalidate=''>
+        {% csrf_token %}
+        {% if form.errors %}
+            <div class = "alert alert-danger d-flex align-items-center" role="alert">
+                <p>Hay errores en los datos ingresados.Por favor, corriga lo siguiente:</p>
+                {{ form.non_field_errors }}
+                <u1>
+                    {% for field in form %}
+                        {% if field.errors %}<li>{{ field.label }}: {{ field.errors|striptags }}</li>{% endif %}
+                    {% endfor %}
+                </u1>
+                <hr><br>
+            </div>
+        {% endif %}
+        {{ form.materia_codigo.label }} {{ form.materia_codigo }}
+        {{ form.aula_idAula.label }} {{ form.aula_idAula }}
+        {{ form.dia_clase.label }} {{ form.dia_clase }}
+        <br>
+        <button type="submit" id="submit">Enviar</button>
+    </form>
+{% endblock %}

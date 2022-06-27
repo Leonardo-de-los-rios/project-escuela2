@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% block titulo_pagina %}Inicio{% endblock %}
+
+{% block body %}
+    <h2>Bienvenido a la Escuela Superior Sarmiento :)</h2>
+    {% if request.user.is_authenticated %}
+        {% if request.user.username == 'administrador' %}
+            <ul>
+                <li><a class="feed" href="{% url 'funcionalidades_alumno' %}">Funcionalidades Alumno</a></li>
+                <br>
+                <li><a class="feed" href="{% url 'funcionalidades_profesor' %}">Funcionalidades Profesor </a></li>
+                <br>
+                <li><a class="feed" href="{% url 'funcionalidad_preceptor' %}">Funcionalidades Preceptor </a></li>
+                <br>
+                <li><a class="feed" href="{% url 'funcionalidades_admin' %}">Funcionalidades Administrador </a></li>
+                <br><br>
+                <li><h5>Tipos de Usuario</h5>
+                    <ul>
+                        <li><a href="{% url 'nuevo_tipo_usuario' %}">Registrar</a></li>
+                        <li><a class="feed" href="{% url 'tipos_usuario' %}">Listar</a></li>
+                    </ul>
+                </li>
+                <br>
+                <li><h5>Preceptores</h5>
+                    <ul>
+                        <li><a href="{% url 'nuevo_preceptor' %}">Registrar</a></li>
+                        <li><a class="feed" href="{% url 'preceptores' %}">Listar</a></li>
+                    </ul>
+                </li>
+                <br>
+                <li><h5>Aulas</h5>
+                    <ul>
+                        <li><a href="{% url 'nueva_aula' %}">Registrar</a></li>
+                        <li><a class="feed" href="{% url 'aulas' %}">Listar</a></li>
+                    </ul>
+                </li>
+                <br>
+                <li><h5>Alumnos</h5>
+                    <ul>
+                        <li><a href="{% url 'nuevo_alumno' %}">Registrar</a></li>
+                        <li><a class="feed" href="{% url 'alumnos' %}">Listar</a></li>
+                    </ul>
+                </li>
+                <br>
+                <li><h5>Materias</h5>
+                    <ul>
+                        <li><a href="{% url 'nueva_materia' %}">Registrar</a></li>
+                        <li><a class="feed" href="{% url 'materias' %}">Listar</a></li>
+                    </ul>
+                </li>
+                <br>
+                <li><h5>Cursos</h5>
+                    <ul>
+                        <li><a href="{% url 'nuevo_curso' %}">Registrar</a></li>
+                        <li><a class="feed" href="{% url 'cursos' %}">Listar</a></li>
+                    </ul>
+                </li>
+                <br>
+                <li><h5>Profesores</h5>
+                    <ul>
+                        <li><a href="{% url 'nuevo_profesor' %}">Registrar</a></li>
+                        <li><a class="feed" href="{% url 'profesores' %}">Listar</a></li>
+                    </ul>
+                </li>
+                <br>
+                <li><h5>Turnos</h5>
+                    <ul>
+                        <li><a href="{% url 'nuevo_turno' %}">Registrar</a></li>
+                        <li><a class="feed" href="{% url 'turnos' %}">Listar</a></li>
+                    </ul>
+                </li>
+                <br>
+                <li><h5>Dictan</h5>
+                    <ul>
+                        <li><a href="{% url 'nuevo_dicta' %}">Registrar</a></li>
+                        <li><a class="feed" href="{% url 'dictan' %}">Listar</a></li>
+                    </ul>
+                </li>
+                <br>
+                <li><h5>Rinden</h5>
+                    <ul>
+                        <li><a href="{% url 'nuevo_rinde' %}">Registrar</a></li>
+                        <li><a class="feed" href="{% url 'rinden' %}">Listar</a></li>
+                    </ul>
+                </li>
+                <br>
+                <li><h5>Tienen</h5>
+                    <ul>
+                        <li><a href="{% url 'nuevo_tiene' %}">Registrar</a></li>
+                        <li><a class="feed" href="{% url 'tienen' %}">Listar</a></li>
+                    </ul>
+                </li>
+            </ul>
+            {% elif request.user.get_tipo == 'Alumno' %}
+
+            {% elif request.user.get_tipo == 'Profesor' %}
+
+            {% elif request.user.get_tipo == 'Preceptor' %}
+
+            {% else %}
+
+            {% endif %}
+          {% endif %}
+    
+{% endblock body %}
+

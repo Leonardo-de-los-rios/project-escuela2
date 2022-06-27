@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% block titulo_pagina %}Funcionalidades Preceptor{% endblock %}
+
+{% block body %}
+    <h2>Funcionalidades Preceptor</h2>
+    <p>Ingrese el nombre y apellido del alumno y se desplegará la tabla con las funcionalidades del alumno.</p>
+    <form class="form" method="post" enctype="multipart/form-data" novalidate=''>
+        {% csrf_token %}
+        {% if form.errors %}
+            <!-- Mensaje de error -->
+            <div class="alert alert-danger d-flex align-items-center" role="alert">
+                <p>Hay errores en los datos ingresados. Por favor, corrija lo siguiente:</p>
+                {{ form.non_field_errors }}
+                <ul>
+                    {% for field in form %} <!-- field: campo del formulario-->
+                        {% if field.errors %}<li>{{ field.label }}: {{ field.errors|striptags }}</li>{% endif %}
+                    {% endfor %}
+                </ul>
+                <br>
+            </div>
+        {% endif %}
+        <ul>
+              <label for="nombre">Nombre/s</label>
+                {% if form.nombre == None %}
+                    <input type="text" id="nombre" name="nombre" class='form-control input' text-transform='capitalize'>
+                {% else %}
+                    <input type="text" id="nombre" name="nombre" value='{{ form.nombre }}' class='form-control input' text-transform='capitalize'>
+                {% endif %}
+              <label for="apellido">Apellido/s</label>
+                {% if form.apellido == None %}
+                    <input type="text" id="apellido" name="apellido" class='form-control input' text-transform='capitalize'>
+                {% else %}
+                    <input type="text" id="apellido" name="apellido" value='{{ form.apellido }}' class='form-control input' text-transform='capitalize'>
+                {% endif %}
+           </ul>
+        <br>
+        <button type="submit" id="submit">Enviar</button>
+    </form>
+
+
+    {% if ingreso == True %}
+        {% if denegado != True %}
+            <br>
+            <h3>Aulas Controladas por {{preceptor.nombre}} {{preceptor.apellido}}</h3>
+        
+            <table class="table table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th>Año</th>
+                        <th>Division</th>
+                        <th>Turno</th>
+                        <th>Ingreso</th>
+                        <th>Egreso</th>
+                    </tr>
+                </thead>
+            {% for x in f1 %}
+                <tr>
+                    <td>{{x.año}}</td>
+                    <td>{{x.division}}</td>
+                    <td>{{x.turno}}</td>
+                    <td>{{x.ingreso}}</td>
+                    <td>{{x.egreso}}</td>
+                </tr>
+            {% endfor %}
+            </table>
+
+            <br>
+            <h4>Inasistencias de alumnos controlados por {{preceptor.nombre}} {{preceptor.apellido}}</h4>
+            <table class="table table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th>Año</th>
+                        <th>Division</th>
+                        <th>Materia</th>
+                        <th>Registro</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Inasistencias</th>
+                    </tr>
+                </thead>
+            {% for k in f2 %}
+                <tr>
+                    <td>{{k.año}}</td>
+                    <td>{{k.division}}</td>
+                    <td>{{k.materia}}</td>
+                    <td>{{k.registro}}</td>
+                    <td>{{k.nombre}}</td>
+                    <td>{{k.apellido}}</td>
+                    <td>{{k.inasistencias}}</td>
+                </tr>
+            {% endfor %}
+            </table>
+        {% else %}
+            <h4>Usuario no encontrado :(</h4>
+        {%endif%}
+    {% endif %}
+{% endblock body %}

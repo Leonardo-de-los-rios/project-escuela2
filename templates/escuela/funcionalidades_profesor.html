@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block titulo_pagina %}Funcionalidades Profesor{% endblock %}
+{% block body %}
+    <h2>Funcionalidades Profesor</h2>
+    <p>Ingrese el nombre y apellido del alumno y se desplegará la tabla con las funcionalidades del alumno.</p>
+    <form class="form" method="post" enctype="multipart/form-data" novalidate=''>
+        {% csrf_token %}
+        {% if form.errors %}
+            <!-- Mensaje de error -->
+            <div class="alert alert-danger d-flex align-items-center" role="alert">
+                <p>Hay errores en los datos ingresados. Por favor, corriga lo siguiente:</p>
+                {{ form.non_field_errors }}
+                <ul>
+                    {% for field in form %} <!-- field: campo del formulario-->
+                        {% if field.errors %}<li>{{ field.label }}: {{ field.errors|striptags }}</li>{% endif %}
+                    {% endfor %}
+                </ul>
+                <br>
+            </div>
+        {% endif %}
+        <ul>
+            <label for="nombre">Nombre/s</label>
+                {% if form.nombre == None %}
+                    <input type="text" id="nombre" name="nombre" class='form-control input' text-transform='capitalize'>
+                {% else %}
+                    <input type="text" id="nombre" name="nombre" value='{{ form.nombre }}' class='form-control input' text-transform='capitalize'>
+                {% endif %}
+            <label for="apellido">Apellido/s</label>
+                {% if form.apellido == None %}
+                    <input type="text" id="apellido" name="apellido" class='form-control input' text-transform='capitalize'>
+                {% else %}
+                    <input type="text" id="apellido" name="apellido" value='{{ form.apellido }}' class='form-control input' text-transform='capitalize'>
+                {% endif %}
+        </ul>
+        <br>
+        <button type="submit" id="submit">Enviar</button>
+    </form>
+
+
+    {% if ingreso == True %}
+        {% if denegado != True %}
+            <br>
+            <h1>Funcionalidades de {{nomyapp}}</h1>
+            <h3>Información sobre sus Aulas</h3>
+            <table class="table table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th>Id Aula</th>
+                        <th>Año</th>
+                        <th>Division</th>
+                        <th>Nombre Turno</th>
+                        <th>Hora Ingreso</th>
+                        <th>Hora Egreso</th>
+                    </tr>
+                </thead>
+            {% for x in f1 %}
+                <tr>
+                    <td>{{x.idAula}}</td>
+                    <td>{{x.año}}</td>
+                    <td>{{x.division}}</td>
+                    <td>{{x.nomTurno}}</td>
+                    <td>{{x.horaIng}}</td>
+                    <td>{{x.horaEgr}}</td>
+                </tr>
+            {% endfor %}
+            </table>
+
+            <br>
+            <h3>Materias y Notas otorgadas</h3>
+            <table class="table table-hover">
+                <thead class="table-light">
+                    <tr>
+                        <th>Nombre Materia</th>
+                        <th>Cargo</th>
+                        <th>Legajo Alumno</th>
+                        <th>Nota 1</th>
+                        <th>Nota 2</th>
+                        <th>Nota 3</th>
+                    </tr>
+                </thead>
+            {% for x in f2 %}
+                <tr>
+                    <td>{{x.nomMateria}}</td>
+                    <td>{{x.cargo}}</td>
+                    <td>{{x.nroReg}}</td>
+                    <td>{{x.nota1}}</td>
+                    <td>{{x.nota2}}</td>
+                    <td>{{x.nota3}}</td>
+                </tr>
+            {% endfor %}
+            </table>
+        {% else %}
+            <h4>Usuario no encontrado! :(</h4>
+        {% endif %}
+    {% endif %}
+
+{% endblock %}

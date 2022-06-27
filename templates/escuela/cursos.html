@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block titulo_pagina %}Listado de Cursos{% endblock %}
+{% block body %}
+    <table class="table table-hover">
+        <thead class="table-light">
+            <tr>
+                <th>Materia </th>
+                <th>Aula</th>
+                <th>Dia de clase</th>
+                <th>MODIFICAR</th>
+                <th>ELIMINAR</th>
+            </tr>
+        </thead>
+    {% for curso in cursos %}
+        <tr>
+            <td>{{curso.materia_codigo}}</td>
+            <td>{{curso.aula_idAula}}</td>
+            <td>{{curso.dia_clase}}</td>
+            <td><a href="{% url 'modificar_curso' curso.id %}"><img src="{% static 'img/Editar_25.png' %}"></a></td>
+            <td><a href="{% url 'eliminar_curso' curso.id %}"><img src="{% static 'img/Eliminar_25.png' %}"></a></td>
+        </tr>
+    {% endfor %}
+    </table>
+{% endblock %}
