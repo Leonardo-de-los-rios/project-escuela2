@@ -9,20 +9,20 @@ SQLITE = {
     }
 }
 
-'''MYSQL = {
+MYSQL = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'escuela',
         'USER': 'root',
         'PASSWORD': 'root123'
     }
-}'''
+}
 
-MYSQL = {
+'''MYSQL = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'escuela_db',
         'USER': 'adm_odontologia',
         'PASSWORD': 'Qwerty123#'
     }
-}
+}'''

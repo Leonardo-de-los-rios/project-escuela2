@@ -13,7 +13,7 @@ from core.user.models import TipoUsuario,User
 from datetime import datetime
 from dateutil.relativedelta import relativedelta # calcula la edad
 
-'''import mysql.connector 
+import mysql.connector 
 mydb = mysql.connector.connect (
     host="localhost",
     username="root",
@@ -21,7 +21,7 @@ mydb = mysql.connector.connect (
     database="escuela"
 )
 
-mycursor = mydb.cursor()'''
+mycursor = mydb.cursor()
 
 def index(request,template_name='escuela/index.html'):
     return render(request,template_name)
